@@ -17,8 +17,6 @@ transform.rotation = Quaternion.Euler(x, y, z);
 transform.localScale = new Vector3(x, y, z);
 ```
 
-Estas funciones modifican la **matriz de modelo** del objeto, que define su posición, orientación y escala en el espacio mundial.
-
 ---
 
 ## 2. Orden de transformaciones: traslación y rotación de la cámara
@@ -36,13 +34,10 @@ transform.Translate(2, 2, 2);
 El resultado **no es el mismo**.
 Las transformaciones **no conmutan**:
 
-- En A, la cámara se mueve en el sistema mundial y luego gira sobre su nuevo eje.
-- En B, primero se rota (cambia su sistema local) y luego se traslada según sus ejes locales rotados.
+- En A, la cámara se mueve y luego gira sobre su nueva posicion.
+- En B, primero se rota y luego se traslada según los ejes rotados.
 
-> En coordenadas homogéneas, esto equivale a multiplicar matrices en distinto orden:
-> `M_total = T * R ≠ R * T`.
-
----
+## TODO ESCENAAAA
 
 ## 3. Esfera parcialmente recortada por el volumen de vista
 
@@ -55,7 +50,7 @@ Camera.main.farClipPlane = 3f;
 
 Si la esfera está centrada en `z = 2`, los planos del frustum recortan parte de ella.
 
----
+## TODO ESCENAAAA
 
 ## 4. Esfera fuera del campo de visión
 
@@ -68,7 +63,7 @@ Camera.main.farClipPlane = 1.5f;
 
 La esfera a `z = 2` quedará completamente fuera de la vista y no será renderizada.
 
----
+## TODO ESCENAAAA
 
 ## 5. Modificar el ángulo de visión de la cámara
 
@@ -91,7 +86,9 @@ Para realizar la proyección al espacio 2D sin perspectiva se cambia:
 Camera.main.orthographic = true;
 ```
 
-En este modo, no hay efecto de profundidad y los objetos mantienen su tamaño sin importar la distancia.
+En este modo, Se conservan medidas, no se almacena información de distancias. es apropiada para programas de diseño.
+
+## TODO ESCENAAAA
 
 ---
 
@@ -103,87 +100,84 @@ Las rotaciones se pueden expresar con cuaterniones:
 transform.rotation = Quaternion.Euler(0, 30, 0);
 ```
 
-o concatenar rotaciones:
-
-```csharp
-transform.rotation *= Quaternion.Euler(0, 30, 0);
-```
-
-Los **quaternions** representan rotaciones en el espacio 3D sin los problemas de bloqueo de ejes (gimbal lock).
+Los **quaternions** representan rotaciones en el espacio 3D sin los problemas de bloqueo de ejes (gimbal lock), se basan en los números complejos.
 
 ---
 
 ## 8. Matriz de proyección en perspectiva
 
-Se puede obtener en tiempo de ejecución con:
+Se puede obtener en tiempo de ejecución mirando en el inspector de la propia cámara y buscando la propiedad projectionMatrix o accediendo a dicha propiedad en un script mediante
 
 ```csharp
-Matrix4x4 projMatrix = Camera.main.projectionMatrix;
-Debug.Log(projMatrix);
+Camera.main.projectionMatrix
+GetComponent<Camera>().projectionMatrix
 ```
 
-Esta matriz transforma coordenadas del **espacio de vista** al **espacio de clip** y depende de:
+Asegurnadonos de que:
 
-- `fieldOfView`
-- `aspect`
-- `nearClipPlane`
-- `farClipPlane`
+```csharp
+Camera.main.orthographic = false;
+```
 
 ---
 
 ## 9. Matriz de proyección ortográfica
 
-Al cambiar a proyección ortográfica:
+De la misma forma que en el punto anteiror pero debemos asegurarnos de que:
 
 ```csharp
 Camera.main.orthographic = true;
-Matrix4x4 orthoMatrix = Camera.main.projectionMatrix;
-Debug.Log(orthoMatrix);
 ```
 
 ---
 
-## 10. Matriz de transformación local ↔ mundial
+## 10. Matriz de transformación local ↔ global
 
-```csharp
-Matrix4x4 localToWorld = transform.localToWorldMatrix;
-Matrix4x4 worldToLocal = transform.worldToLocalMatrix;
-```
+Para pasar de local a global, usamos la propiedad:
+[localToWorld](https://docs.unity3d.com/ScriptReference/Transform-localToWorldMatrix.html)
+Matriz que transforma un punto del espacio local en espacio global (Solo lectura).
 
-Estas matrices conectan el **sistema local del objeto** con el **sistema mundial**.
+Para pasar de global a local, usamos la propiedad:
+[worldToLocal](https://docs.unity3d.com/ScriptReference/Transform-worldToLocalMatrix.html)
+Matriz que transforma un punto del espacio global en espacio local (Solo lectura).
 
 ---
 
 ## 11. Matriz de cambio al sistema de referencia de vista
 
-La **matriz de vista** transforma del sistema mundial al sistema de coordenadas de la cámara:
-
-```csharp
-Matrix4x4 viewMatrix = Camera.main.worldToCameraMatrix;
-```
+Para obtener la matriz para cambiar al sistema de referencia de vista, miramos la propiedad:
+[worldToCameraMatrix](https://docs.unity3d.com/ScriptReference/Camera-worldToCameraMatrix.html)
 
 ---
 
 ## 12. Matriz de proyección usada en ejecución
 
+Agregamos esta línea de código al script de la práctica:
+
 ```csharp
 Debug.Log(Camera.main.projectionMatrix);
 ```
 
-Permite inspeccionar la proyección activa en un instante del render.
+## TODO ESCENAAAA
 
 ---
 
 ## 13. Matrices de modelo y vista de la escena
 
-- **Modelo:** `transform.localToWorldMatrix`
-- **Vista:** `Camera.main.worldToCameraMatrix`
+Agregamos las siguientes líneas de código al script de la práctica:
 
-Estas matrices se combinan para transformar los vértices de cada objeto al sistema de la cámara.
+```csharp
+Debug.Log(transform.localToWorldMatrix);
+Debug.Log(Camera.main.worldToCameraMatrix);
+```
+
+## TODO ESCENAAAAA
 
 ---
 
 ## 14. Rotación en Start y matriz mundial
+
+Agregamos las siguientes líneas de código al script de la práctica:
 
 ```csharp
 void Start() {
@@ -192,7 +186,7 @@ void Start() {
 }
 ```
 
-Muestra la matriz resultante del objeto respecto al sistema mundial tras aplicar la rotación.
+## TODO ESCENAAAA
 
 ---
 
@@ -211,6 +205,8 @@ M = T(3,1,1) · Rz(45°) · Rx(45°)
 
 Define la posición y orientación del objeto respecto al mundo.
 
+## TODO HACERLO KYLIIIIIIIIIIII
+
 ---
 
 ## 16. Escena base y script de depuración
@@ -222,6 +218,24 @@ Define la posición y orientación del objeto respecto al mundo.
 - Tres cubos (rojo, verde, azul) en distintas posiciones
 
 **Script de depuración:**
+
+```
+      y
+      |
+      |_____ x
+     /
+    z
+
+Centro del cubo (0, 0, 0)
+           +--------+
+          /|       /|
+         / |      / |
+        +--------+  |
+        |  +-----|--+ <- Vértice (0.5, 0.5, 0.5)
+        | /      | /
+        |/       |/
+        +--------+
+```
 
 ```csharp
 using UnityEngine;
@@ -236,7 +250,6 @@ public class MatrixDebugger : MonoBehaviour {
         Debug.Log("==== MATRICES ====");
         Debug.Log("View:\n" + view);
         Debug.Log("Projection:\n" + proj);
-
         foreach (Transform cube in new Transform[]{redCube, greenCube, blueCube}) {
             Matrix4x4 model = cube.localToWorldMatrix;
             Vector3 vertex = new Vector3(0.5f, 0.5f, 0.5f);
@@ -247,22 +260,15 @@ public class MatrixDebugger : MonoBehaviour {
 }
 ```
 
+## TODO ESCENAAAA
+
 ---
 
 ## 17. Recorrido de coordenadas de un vértice
 
 **Ejemplo:** vértice `(0.5, 0.5, 0.5)` del cubo rojo
 
-| Espacio       | Descripción                    | Ejemplo de coordenadas |
-| ------------- | ------------------------------ | ---------------------- |
-| Local         | Coordenadas propias del cubo   | (0.5, 0.5, 0.5, 1)     |
-| World         | Multiplicación por `Model`     | `(M * v_local)`        |
-| View / Camera | Multiplicación por `View`      | `(V * M * v)`          |
-| Clip          | Aplicación de `Projection`     | `(P * V * M * v)`      |
-| NDC           | Normalización dividiendo por w | `(x/w, y/w, z/w)`      |
-| Viewport      | Mapeo a píxeles de pantalla    | `(x', y')`             |
-
-Cada transformación corresponde a una etapa del **pipeline gráfico**.
+## TODOO Hacer dibujo en draw.io
 
 ---
 
@@ -274,11 +280,13 @@ Cada transformación corresponde a una etapa del **pipeline gráfico**.
 
 Comparando los valores en consola se puede observar cómo varían los coeficientes de cada matriz y su efecto en las coordenadas finales.
 
+## TODO ESCENAAAA pantallazos
+
 ---
 
 ## Referencias
 
-- Apuntes de clase: ResumenGraficos3D Geometría y ResumenGraficos3D Iluminacion
+- Apuntes de clase: ResumenGraficos3D Geometría
 - Documentación oficial Unity:
   [https://docs.unity3d.com/ScriptReference/Transform.html](https://docs.unity3d.com/ScriptReference/Transform.html)
   [https://docs.unity3d.com/ScriptReference/Camera.html](https://docs.unity3d.com/ScriptReference/Camera.html)
