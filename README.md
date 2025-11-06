@@ -438,21 +438,23 @@ public class ShowTransformInfo : MonoBehaviour {
 
 ![Scene](./Scenes/img-ej18.gif)
 
-
-
 ---
 
 ## Referencias
 
 - Apuntes de clase: ResumenGraficos3D Geometría
 - Documentación oficial Unity:
-  [https://docs.unity3d.com/ScriptReference/Transform.html](https://docs.unity3d.com/ScriptReference/Transform.html)
-  [https://docs.unity3d.com/ScriptReference/Camera.html](https://docs.unity3d.com/ScriptReference/Camera.html)
+  * [https://docs.unity3d.com/ScriptReference/Transform.html](https://docs.unity3d.com/ScriptReference/Transform.html)
+  * [https://docs.unity3d.com/ScriptReference/Camera.html](https://docs.unity3d.com/ScriptReference/Camera.html)
 
 ---
+**Autores:**
+* Adrián García Rodríguez 
+* Kyliam Gabriel Chinea Salcedo 
+* Roberto Padrón Castañeda
+* Cristóbal Jesús Sarmiento Rodríguez
 
-**Autor:**
-Adrián García Rodríguez, Kyliam Gabriel Chinea Salcedo, Roberto Padrón Castañeda y Cristóbal Jesús Sarmiento Rodríguez
+--- 
 
 **Asignatura:** Grado en Ingeniería Informática
 Interfaces Inteligentes
