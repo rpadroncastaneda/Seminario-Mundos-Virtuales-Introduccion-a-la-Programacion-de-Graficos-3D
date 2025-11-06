@@ -37,44 +37,48 @@ Las transformaciones **no conmutan**:
 - En A, la cámara se mueve y luego gira sobre su nueva posicion.
 - En B, primero se rota y luego se traslada según los ejes rotados.
 
-## TODO ESCENAAAA
+![Scene](./Scenes/EJ2Scene.gif)
 
 ## 3. Esfera parcialmente recortada por el volumen de vista
 
 Para que una esfera de radio 1 quede parcialmente dentro del volumen de vista:
 
 ```csharp
-Camera.main.nearClipPlane = 1f;
-Camera.main.farClipPlane = 3f;
+Camera.main.nearClipPlane = x;
+Camera.main.farClipPlane = y;
 ```
+X Y serán los valores necesarios para cortar la esfera a la mitad
 
-Si la esfera está centrada en `z = 2`, los planos del frustum recortan parte de ella.
-
-## TODO ESCENAAAA
+![Scene](./Scenes/EJ3Scene.png)
+![Scene](./Scenes/EJ3Scene2.png)
 
 ## 4. Esfera fuera del campo de visión
 
 Situar la esfera fuera del volumen de vista ajustando los planos de recorte:
 
 ```csharp
-Camera.main.nearClipPlane = 1f;
-Camera.main.farClipPlane = 1.5f;
+Camera.main.nearClipPlane = x;
+Camera.main.farClipPlane = y;
 ```
+X Y serán los valores necesarios para dejar la esfera tras el far
 
-La esfera a `z = 2` quedará completamente fuera de la vista y no será renderizada.
-
-## TODO ESCENAAAA
+![Scene](./Scenes/EJ4Scene.png)
+![Scene](./Scenes/EJ4Scene2.png)
 
 ## 5. Modificar el ángulo de visión de la cámara
+
+Para cambiar el ángulo de visión:
 
 ```csharp
 Camera.main.fieldOfView = 90f; // Aumentar FOV
 Camera.main.fieldOfView = 30f; // Disminuir FOV
 ```
+O cambiandolo desde el inspector como el gif.
 
 - Aumentar el **FOV** amplía el campo de visión, los objetos parecen más pequeños y distantes.
 - Disminuirlo reduce el campo de visión, los objetos se ven más grandes y cercanos.
 
+![Scene](./Scenes/EJ5Scene.gif)
 ---
 
 ## 6. Proyección ortográfica
@@ -85,10 +89,11 @@ Para realizar la proyección al espacio 2D sin perspectiva se cambia:
 ```csharp
 Camera.main.orthographic = true;
 ```
+O cambiandolo desde el inspector como en la imagen.
 
 En este modo, Se conservan medidas, no se almacena información de distancias. es apropiada para programas de diseño.
 
-## TODO ESCENAAAA
+![Scene](./Scenes/EJ6Scene.png)
 
 ---
 
@@ -173,8 +178,90 @@ Debug.Log(Camera.main.worldToCameraMatrix);
 // Matriz modelo, aplicado a cada objeto
 Debug.Log(transform.localToWorldMatrix);
 ```
+```
+View matrix (Camera.main.worldToCameraMatrix):
+[  1.00000   0.00000   0.00000   0.00000 ]
+[  0.00000   1.00000   0.00000  -1.37500 ]
+[  0.00000   0.00000  -1.00000  -3.00000 ]
+[  0.00000   0.00000   0.00000   1.00000 ]
 
-## TODO ESCENAAAAA
+Object: Main Camera (Tag: MainCamera)
+[  1.00000   0.00000   0.00000   0.00000 ]
+[  0.00000   1.00000   0.00000   1.37500 ]
+[  0.00000   0.00000   1.00000  -3.00000 ]
+[  0.00000   0.00000   0.00000   1.00000 ]
+
+Object: Script (Tag: GameController)
+[  1.00000   0.00000   0.00000  -1.63680 ]
+[  0.00000   1.00000   0.00000   0.00000 ]
+[  0.00000   0.00000   1.00000   9.47458 ]
+[  0.00000   0.00000   0.00000   1.00000 ]
+
+Object: Stairs_650_400_300_Prefab (2) (Tag: Decorative)
+[ -1.00000   0.00000   0.00000   0.50000 ]
+[  0.00000   1.00300   0.00000   9.00000 ]
+[  0.00000   0.00000  -0.97748  18.70000 ]
+[  0.00000   0.00000   0.00000   1.00000 ]
+
+Object: PlayerCameraRoot (Tag: CinemachineTarget)
+[  1.00000   0.00000   0.00000   0.00000 ]
+[  0.00000   1.00000   0.00000   1.37500 ]
+[  0.00000   0.00000   1.00000   0.00000 ]
+[  0.00000   0.00000   0.00000   1.00000 ]
+
+Object: Directional Light (Tag: Light)
+[  0.86603  -0.38302  -0.32139   0.00000 ]
+[  0.00000   0.64279  -0.76604   3.00000 ]
+[  0.50000   0.66341   0.55667   0.00000 ]
+[  0.00000   0.00000   0.00000   1.00000 ]
+
+Object: Cube (Tag: Decorative)
+[ 20.00000   0.00000   0.00000  12.00000 ]
+[  0.00000  20.00000   0.00000  10.00000 ]
+[  0.00000   0.00000  20.00000  12.00000 ]
+[  0.00000   0.00000   0.00000   1.00000 ]
+
+Object: Stairs_650_400_300_Prefab (1) (Tag: Decorative)
+[ -1.00000   0.00000   0.00000   0.50000 ]
+[  0.00000   1.00300   0.00000   5.51000 ]
+[  0.00000   0.00000  -0.97748  12.40000 ]
+[  0.00000   0.00000   0.00000   1.00000 ]
+
+Object: PlayerArmature (Tag: Player)
+[  1.00000   0.00000   0.00000   0.00000 ]
+[  0.00000   1.00000   0.00000   0.00000 ]
+[  0.00000   0.00000   1.00000   0.00000 ]
+[  0.00000   0.00000   0.00000   1.00000 ]
+
+Object: Global Volume (Tag: Effect)
+[  1.00000   0.00000   0.00000   0.00000 ]
+[  0.00000   1.00000   0.00000   0.00000 ]
+[  0.00000   0.00000   1.00000   0.00000 ]
+[  0.00000   0.00000   0.00000   1.00000 ]
+
+Object: Capsule (Tag: Decorative)
+[  6.00000   0.00000   0.00000 -10.63993 ]
+[  0.00000   6.00000   0.00000   7.00000 ]
+[  0.00000   0.00000   6.00000 -28.84210 ]
+[  0.00000   0.00000   0.00000   1.00000 ]
+
+Object: Stairs_650_400_300_Prefab (Tag: Decorative)
+[ -1.00000   0.00000   0.00000   0.50000 ]
+[  0.00000   1.00300   0.00000   1.80000 ]
+[  0.00000   0.00000  -0.97748   6.00000 ]
+[  0.00000   0.00000   0.00000   1.00000 ]
+
+Object: Terrain (Tag: Decorative)
+[  1.00000   0.00000   0.00000 -500.00000 ]
+[  0.00000   1.00000   0.00000   0.00000 ]
+[  0.00000   0.00000   1.00000 -500.00000 ]
+[  0.00000   0.00000   0.00000   1.00000 ]
+```
+
+![Scene](./Scenes/ModelViewMatrix.gif)
+
+- `transform.localToWorldMatrix` devuelve la matriz transform del objeto que convierte coordenadas locales a coordenadas mundiales (modelo -> mundo).
+- `Camera.main.worldToCameraMatrix` devuelve la matriz que transforma coordenadas del espacio mundial al espacio de cámara (vista).
 
 ---
 
@@ -188,9 +275,23 @@ void Start() {
     Debug.Log(transform.localToWorldMatrix);
 }
 ```
+```
+Object: Cube (Tag: Decorative)
+Anterior
+[ 20.00000   0.00000   0.00000  12.00000 ]
+[  0.00000  20.00000   0.00000  10.00000 ]
+[  0.00000   0.00000  20.00000  12.00000 ]
+[  0.00000   0.00000   0.00000   1.00000 ]
+Nueva
+[ 14.14213	 0.00000  14.14214	12.00000 ]
+[  0.00000	20.00000   0.00000	10.00000 ]
+[-14.14214	 0.00000  14.14213	12.00000 ]
+[  0.00000	 0.00000   0.00000	 1.00000 ]
+```
 
-## TODO ESCENAAAA
+![Scene](./Scenes/EJ14Scene.png)
 
+Al aplicar la rotación de 45° en el eje Y, cambian las columnas X y Z de la matriz porque el cubo se gira sobre ese eje. Los valores 20 pasan a ser combinaciones con cos(45°) y sin(45°), dando ≈14.14. La posición no cambia porque la rotación se hace alrededor del propio origen del objeto.
 ---
 
 ## 15. Coordenadas con `Position(3,1,1)` y `Rotation(45,0,45)`
@@ -200,9 +301,6 @@ Teniendo en cuenta que en el enunciado nos dan los anteriores datos, se nos pide
 * [up](https://docs.unity3d.com/ScriptReference/Transform-up.html) El eje verde del transform en el espacio mundial.
 * [forward](https://docs.unity3d.com/ScriptReference/Transform-forward.html) Devuelve un vector normalizado que representa el eje azul del transform en el espacio mundial.
 * [right](https://docs.unity3d.com/ScriptReference/Transform-right.html) El eje rojo del transform en el espacio mundial.
-```
-M = T(3,1,1) · Rz(45°) · Rx(45°)
-```
 
 Se implementó el siguiente codigo con el fin de que saliera por pantalla las coordenadas de cada eje en el sistema global.
 
@@ -229,7 +327,7 @@ public class ShowTransformInfo : MonoBehaviour
 
 ```
 
-![Escena](./img-ej15.png)
+![Escena](./Scenes/img-ej15.png)
 ---
 
 ## 16. Escena base y script de depuración
