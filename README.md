@@ -209,7 +209,28 @@ M = T(3,1,1) · Rz(45°) · Rx(45°)
 
 Define la posición y orientación del objeto respecto al mundo.
 
-## TODO HACERLO KYLIIIIIIIIIIII
+```csharp
+using UnityEngine;
+
+public class ShowTransformInfo : MonoBehaviour
+{
+    public Transform target;
+    public float gizmoAxisLength = 1f;
+    void Start()
+    {
+        target = transform;
+    }
+    void Update()
+    {
+        if (target == null)
+        {
+          return;
+        }
+        Debug.Log($"Right: {target.right}\nUp: {target.up}\nForward: {target.forward}\nPosition: {target.position}");
+    }
+}
+
+```
 
 ---
 
