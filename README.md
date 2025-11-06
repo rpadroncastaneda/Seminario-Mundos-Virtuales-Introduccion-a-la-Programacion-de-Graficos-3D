@@ -158,7 +158,9 @@ Agregamos esta línea de código al script de la práctica:
 Debug.Log(Camera.main.projectionMatrix);
 ```
 
-## TODO ESCENAAAA
+![Escena](./Scenes/EJ12Scene.png)
+
+Si analizamos esta un poco nos darémos cuenta de que la cámara utilizada en esta práctica fue una en perspectiva, ya que el campo (4,3), contando desde 1, de la matriz está a -1 y no a 0.
 
 ---
 
@@ -167,8 +169,10 @@ Debug.Log(Camera.main.projectionMatrix);
 Agregamos las siguientes líneas de código al script de la práctica:
 
 ```csharp
-Debug.Log(transform.localToWorldMatrix);
+// Matriz de vista
 Debug.Log(Camera.main.worldToCameraMatrix);
+// Matriz modelo, aplicado a cada objeto
+Debug.Log(transform.localToWorldMatrix);
 ```
 
 ## TODO ESCENAAAAA
