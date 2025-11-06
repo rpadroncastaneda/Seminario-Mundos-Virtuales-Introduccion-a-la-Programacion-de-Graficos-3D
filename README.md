@@ -195,15 +195,16 @@ void Start() {
 
 ## 15. Coordenadas con `Position(3,1,1)` y `Rotation(45,0,45)`
 
-Teniendo en cuenta que en el enunciado nos dan los siguientes datos, se nos pide ver en relaion con el sistema global como esta situado el sistema de referencia de nuestro cubo, para eso haremos uso de las siguientes propiedades:
-* [up](https://docs.unity3d.com/ScriptReference/Transform-up.html)
-* [forward](https://docs.unity3d.com/ScriptReference/Transform-forward.html)
-* [right](https://docs.unity3d.com/ScriptReference/Transform-right.html)
+Teniendo en cuenta que en el enunciado nos dan los anteriores datos, se nos pide ver en relacion con el sistema global como esta situado el sistema de referencia de nuestro cubo, para eso haremos uso de las siguientes propiedades:
+
+* [up](https://docs.unity3d.com/ScriptReference/Transform-up.html) El eje verde del transform en el espacio mundial.
+* [forward](https://docs.unity3d.com/ScriptReference/Transform-forward.html) Devuelve un vector normalizado que representa el eje azul del transform en el espacio mundial.
+* [right](https://docs.unity3d.com/ScriptReference/Transform-right.html) El eje rojo del transform en el espacio mundial.
 ```
 M = T(3,1,1) · Rz(45°) · Rx(45°)
 ```
 
-Define la posición y orientación del objeto respecto al mundo.
+Se implementó el siguiente codigo con el fin de que saliera por pantalla las coordenadas de cada eje en el sistema global.
 
 ```csharp
 using UnityEngine;
