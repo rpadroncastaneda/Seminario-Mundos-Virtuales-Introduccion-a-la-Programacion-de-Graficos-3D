@@ -399,9 +399,7 @@ public class MatrixDebugger : MonoBehaviour {
 - **Rotar la cámara:** modifica la **matriz de vista (View Matrix)**.
 - **Cambiar proyección ortográfica ↔ perspectiva:** altera la **matriz de proyección (Projection Matrix)**.
 
-Comparando los valores en consola se puede observar cómo varían los coeficientes de cada matriz y su efecto en las coordenadas finales.
-
-## TODO ESCENAAAA pantallazos
+Esto lo podemos comprobar con el comportamiento presentado en anteriores ejercicios de este readme.
 
 ---
 
