@@ -2,8 +2,8 @@
 
 ## 1. Funciones de traslación, rotación y escalado en Unity
 
-En Unity, las transformaciones geométricas se realizan mediante el componente **Transform**.
-Principales funciones:
+En Unity, las transformaciones geométricas se realizan mediante el componente **[Transform](https://docs.unity3d.com/ScriptReference/Transform.html)** Principales funciones: 
+
 
 ```csharp
 // Traslación
@@ -41,13 +41,13 @@ Las transformaciones **no conmutan**:
 
 ## 3. Esfera parcialmente recortada por el volumen de vista
 
-Para que una esfera de radio 1 quede parcialmente dentro del volumen de vista:
+Para que una esfera de radio 1 quede parcialmente dentro del volumen de vista modificamos **[far](https://docs.unity3d.com/ScriptReference/Camera-farClipPlane.html)** y **[near](https://docs.unity3d.com/ScriptReference/Camera-nearClipPlane.html)** de la cámara:
 
 ```csharp
 Camera.main.nearClipPlane = x;
 Camera.main.farClipPlane = y;
 ```
-X Y serán los valores necesarios para cortar la esfera a la mitad
+X Y serán los valores necesarios para cortar la esfera a la mitad.
 
 ![Scene](./Scenes/EJ3Scene.png)
 ![Scene](./Scenes/EJ3Scene2.png)
@@ -67,7 +67,8 @@ X Y serán los valores necesarios para dejar la esfera tras el far
 
 ## 5. Modificar el ángulo de visión de la cámara
 
-Para cambiar el ángulo de visión:
+Para cambiar el **[ángulo de visión(field of view)](https://docs.unity3d.com/ScriptReference/Camera-fieldOfView.html)**:
+
 
 ```csharp
 Camera.main.fieldOfView = 90f; // Aumentar FOV
@@ -84,7 +85,7 @@ O cambiandolo desde el inspector como el gif.
 ## 6. Proyección ortográfica
 
 La afirmación es **correcta**.
-Para realizar la proyección al espacio 2D sin perspectiva se cambia:
+Para realizar la proyección al espacio 2D sin perspectiva se cambia con la propiedad **[orthographic](https://docs.unity3d.com/ScriptReference/Camera-orthographic.html)**:
 
 ```csharp
 Camera.main.orthographic = true;
@@ -99,7 +100,7 @@ En este modo, Se conservan medidas, no se almacena información de distancias. e
 
 ## 7. Rotaciones con quaternions
 
-Las rotaciones se pueden expresar con cuaterniones:
+Las rotaciones se pueden expresar con **[Quaternions](https://docs.unity3d.com/ScriptReference/Quaternion.html)**:
 
 ```csharp
 transform.rotation = Quaternion.Euler(0, 30, 0);
@@ -139,11 +140,11 @@ Camera.main.orthographic = true;
 ## 10. Matriz de transformación local ↔ global
 
 Para pasar de local a global, usamos la propiedad:
-[localToWorld](https://docs.unity3d.com/ScriptReference/Transform-localToWorldMatrix.html)
+**[localToWorld](https://docs.unity3d.com/ScriptReference/Transform-localToWorldMatrix.html)**
 Matriz que transforma un punto del espacio local en espacio global (Solo lectura).
 
 Para pasar de global a local, usamos la propiedad:
-[worldToLocal](https://docs.unity3d.com/ScriptReference/Transform-worldToLocalMatrix.html)
+**[worldToLocal](https://docs.unity3d.com/ScriptReference/Transform-worldToLocalMatrix.html)**
 Matriz que transforma un punto del espacio global en espacio local (Solo lectura).
 
 ---
@@ -151,7 +152,7 @@ Matriz que transforma un punto del espacio global en espacio local (Solo lectura
 ## 11. Matriz de cambio al sistema de referencia de vista
 
 Para obtener la matriz para cambiar al sistema de referencia de vista, miramos la propiedad:
-[worldToCameraMatrix](https://docs.unity3d.com/ScriptReference/Camera-worldToCameraMatrix.html)
+**[worldToCameraMatrix](https://docs.unity3d.com/ScriptReference/Camera-worldToCameraMatrix.html)**
 
 ---
 
@@ -289,18 +290,18 @@ Nueva
 [  0.00000	 0.00000   0.00000	 1.00000 ]
 ```
 
-![Scene](./Scenes/EJ14Scene.png)
-
 Al aplicar la rotación de 45° en el eje Y, cambian las columnas X y Z de la matriz porque el cubo se gira sobre ese eje. Los valores 20 pasan a ser combinaciones con cos(45°) y sin(45°), dando ≈14.14. La posición no cambia porque la rotación se hace alrededor del propio origen del objeto.
+
+![Scene](./Scenes/EJ14Scene.png)
 ---
 
 ## 15. Coordenadas con `Position(3,1,1)` y `Rotation(45,0,45)`
 
 Teniendo en cuenta que en el enunciado nos dan los anteriores datos, se nos pide ver en relacion con el sistema global como esta situado el sistema de referencia de nuestro cubo, para eso haremos uso de las siguientes propiedades:
 
-* [up](https://docs.unity3d.com/ScriptReference/Transform-up.html) El eje verde del transform en el espacio mundial.
-* [forward](https://docs.unity3d.com/ScriptReference/Transform-forward.html) Devuelve un vector normalizado que representa el eje azul del transform en el espacio mundial.
-* [right](https://docs.unity3d.com/ScriptReference/Transform-right.html) El eje rojo del transform en el espacio mundial.
+* **[up](https://docs.unity3d.com/ScriptReference/Transform-up.html)** El eje verde del transform en el espacio mundial.
+* **[forward](https://docs.unity3d.com/ScriptReference/Transform-forward.html)** Devuelve un vector normalizado que representa el eje azul del transform en el espacio mundial.
+* **[right](https://docs.unity3d.com/ScriptReference/Transform-right.html)** El eje rojo del transform en el espacio mundial.
 
 Se implementó el siguiente codigo con el fin de que saliera por pantalla las coordenadas de cada eje en el sistema global.
 
