@@ -362,27 +362,27 @@ Centro del cubo (0, 0, 0)
 ```csharp
 using UnityEngine;
 
-public class MatrixDebugger : MonoBehaviour {
-    public Transform redCube, greenCube, blueCube;
-
-    void Update() {
+public class ShowTransformInfo : MonoBehaviour {
+    public Transform cube;
+    void Start() 
+    {
+        cube = transform;
         Matrix4x4 view = Camera.main.worldToCameraMatrix;
         Matrix4x4 proj = Camera.main.projectionMatrix;
+        Debug.Log("==== MATRICES  " + cube.tag + "  ====");
+        Debug.Log(cube.tag + "View:\n" + view);
+        Debug.Log(cube.tag +"Projection:\n" + proj);
+        Vector3 localVertex = new Vector3(0.5f, 0.5f, 0.5f);
+        Vector3 scale = transform.localScale;
+        Quaternion rotation = transform.rotation;
+        Vector3 vertexWorld = transform.TransformPoint(localVertex);
+        Matrix4x4 modelVertex = Matrix4x4.TRS(vertexWorld, rotation, scale);
+        Debug.Log("World vertex position:\n " + modelVertex);
 
-        Debug.Log("==== MATRICES ====");
-        Debug.Log("View:\n" + view);
-        Debug.Log("Projection:\n" + proj);
-        foreach (Transform cube in new Transform[]{redCube, greenCube, blueCube}) {
-            Matrix4x4 model = cube.localToWorldMatrix;
-            Vector3 vertex = new Vector3(0.5f, 0.5f, 0.5f);
-            Vector4 transformed = proj * view * model * new Vector4(vertex.x, vertex.y, vertex.z, 1);
-            Debug.Log(cube.name + " vertex transformed: " + transformed);
-        }
     }
 }
 ```
-
-## TODO ESCENAAAA
+![Scene](./Scenes/EJ16Scene.gif)
 
 ---
 
