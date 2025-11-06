@@ -400,7 +400,45 @@ public class MatrixDebugger : MonoBehaviour {
 - **Rotar la cámara:** modifica la **matriz de vista (View Matrix)**.
 - **Cambiar proyección ortográfica ↔ perspectiva:** altera la **matriz de proyección (Projection Matrix)**.
 
-Esto lo podemos comprobar con el comportamiento presentado en anteriores ejercicios de este readme.
+```csharp
+using UnityEngine;
+
+public class ShowTransformInfo : MonoBehaviour {
+    public Transform cube;
+    public Camera mainCamera;
+    public bool change = false; 
+    void Start() 
+    {
+        cube = transform;
+        Matrix4x4 model = transform.localToWorldMatrix;
+        Debug.Log("Matriz modelo: \n"+transform.localToWorldMatrix);
+        mainCamera = Camera.main;
+        Debug.Log("Matriz vista: \n"+mainCamera.worldToCameraMatrix);
+        transform.Rotate(0, -30 * Time.deltaTime, 0);
+        mainCamera.transform.Rotate(0, 30 * Time.deltaTime, 0);
+        Debug.Log("Matriz proyeccion no cambiada: \n"+ mainCamera.projectionMatrix);
+    }
+    void Update() 
+    {
+        if (change)
+        {
+            print();
+            change = false;
+        }
+    }
+    public void print()
+    {
+        mainCamera.orthographic = !mainCamera.orthographic;
+        Debug.Log("Matriz proyeccion cambiada: \n"+ mainCamera.projectionMatrix);
+        Debug.Log("Matriz modelo rotada: \n"+ transform.localToWorldMatrix);
+        Debug.Log("Matriz vista rotada: \n"+ mainCamera.worldToCameraMatrix);  
+    }
+}
+```
+
+![Scene](./Scenes/img-ej18.gif)
+
+
 
 ---
 
