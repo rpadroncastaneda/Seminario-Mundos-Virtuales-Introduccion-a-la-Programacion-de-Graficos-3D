@@ -159,7 +159,6 @@ Debug.Log(Camera.main.projectionMatrix);
 ```
 
 ![Escena](./Scenes/EJ12Scene.png)
-
 Si analizamos esta un poco nos darémos cuenta de que la cámara utilizada en esta práctica fue una en perspectiva, ya que el campo (4,3), contando desde 1, de la matriz está a -1 y no a 0.
 
 ---
@@ -196,13 +195,10 @@ void Start() {
 
 ## 15. Coordenadas con `Position(3,1,1)` y `Rotation(45,0,45)`
 
-El transform combina:
-
-- Traslación T(3, 1, 1)
-- Rotación Rz(45°) · Rx(45°)
-
-La matriz total:
-
+Teniendo en cuenta que en el enunciado nos dan los siguientes datos, se nos pide ver en relaion con el sistema global como esta situado el sistema de referencia de nuestro cubo, para eso haremos uso de las siguientes propiedades:
+* [up](https://docs.unity3d.com/ScriptReference/Transform-up.html)
+* [forward](https://docs.unity3d.com/ScriptReference/Transform-forward.html)
+* [right](https://docs.unity3d.com/ScriptReference/Transform-right.html)
 ```
 M = T(3,1,1) · Rz(45°) · Rx(45°)
 ```
@@ -232,6 +228,7 @@ public class ShowTransformInfo : MonoBehaviour
 
 ```
 
+![Escena](./img-ej15.png)
 ---
 
 ## 16. Escena base y script de depuración
