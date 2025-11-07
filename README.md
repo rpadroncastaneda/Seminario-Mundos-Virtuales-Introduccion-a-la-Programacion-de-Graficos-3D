@@ -341,6 +341,15 @@ public class ShowTransformInfo : MonoBehaviour
 - Plano base (suelo)
 - Tres cubos (rojo, verde, azul) en distintas posiciones
 
+  Vamos a repasar el significado de las tres matrices que se piden:
+
+  - Vista:
+  La matriz vista representa por un lado la traslacion de la camara con respecto al mundo en la columna 3, y por otro en la submatriz superior izquierda el angulo de la camara con el sistema de referencia del mundo en valores negativos. Por lo que las filas 0,1 y 2 son respectivamente los valores de los vectores right, up y forward.
+ - Modelo:
+ Transforma coordenadas del espacio local del modelo sobre el sistema de referencia del mundo, es la unica matriz que depende de un objeto especifico, las otras dependen de la camara. Esta matriz actuca de la misma forma que la de vista pero sobre un objeto especifico.
+
+**Script de depuración:**
+
 ```
       y
       |
@@ -358,7 +367,6 @@ Centro del cubo (0, 0, 0)
         |/       |/
         +--------+
 ```
-
 ```csharp
 using UnityEngine;
 
@@ -382,6 +390,9 @@ public class ShowTransformInfo : MonoBehaviour {
     }
 }
 ```
+
+
+[Se le da uso a la funcion estática de la clase Matrix4x4 TRS](https://docs.unity3d.com/es/2017.4/ScriptReference/Matrix4x4.TRS.html)
 ![Scene](./Scenes/EJ16Scene.gif)
 
 ---
