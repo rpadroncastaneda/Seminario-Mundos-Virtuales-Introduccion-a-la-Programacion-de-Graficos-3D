@@ -331,15 +331,15 @@ public class ShowTransformInfo : MonoBehaviour
 ![Escena](./Scenes/img-ej15.png)
 ---
 
-## 16. Escena base y script de depuración
+## 16. Escena
+
+**Enunciado:**Crea una escena en Unity con los siguientes elementos: cámara principal, plano base (como suelo) y tres cubos de distinto color (rojo, verde, azul) colocados en posiciones distintas en el espacio. Realiza un pequeño script de depuración adjunto a la cámara que permita visualizar en consola o en pantalla las matrices de transformación (Model, View, Projection) y sus resultados sobre un vértice de cada cubo.
 
 **Elementos de la escena:**
 
 - Cámara principal
 - Plano base (suelo)
 - Tres cubos (rojo, verde, azul) en distintas posiciones
-
-**Script de depuración:**
 
 ```
       y
