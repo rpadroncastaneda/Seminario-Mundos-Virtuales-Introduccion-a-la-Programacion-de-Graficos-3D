@@ -390,9 +390,7 @@ public class ShowTransformInfo : MonoBehaviour {
 
 **Ejemplo:** vértice `(0.5, 0.5, 0.5)` del cubo rojo
 
-En este ejercicio se registró en Unity el recorrido del vértice (0.5, 0.5, 0.5) del cubo rojo, se observaron las transformaciones en los distintos espacios (local, world, cámara, clip, NDC y viewport) para entender cómo Unity convierte las coordenadas del modelo en píxeles en pantalla. El resultado final muestra que el vértice queda fuera del frustum (x > 1, y > 1), por lo que no aparece visible en la escena renderizada.
-
-![Dibujo](./Scenes/EJ17Dibujo.drawio.png)
+![Dibujo](./Scenes/EJ17Draw.drawio.png)
 
 
 
